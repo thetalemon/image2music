@@ -1,0 +1,7 @@
+Flask         == 1.0.2
+numpy         == 1.16.2
+opencv-python == 4.0.0.21
+Pillow        == 5.4.1
+pretty-midi   == 0.2.8
+scipy         == 1.2.1
+uwsgi         == 2.0.18
