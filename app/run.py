@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+print(__file__)
+
+
 from flask import Flask, render_template, jsonify, request
 from random import *
 import string
-# from .functions import prosImage
-# from .functions import playSound
-# from .functions import utils
+import sys
+sys.path.insert(0, '/var/www')
+# from functions import prosImage as prosImage
+# from functions import playSound as playSound
+# from functions import convertData as convertData
 # from functions import prosImage
 # from functions import playSound
 # from functions import utils
@@ -14,21 +19,22 @@ import string
 # import functions.prosImage as prosImage
 # import functions.playSound as playSound
 # import functions.convertData as convertData
-import functions.prosImage as prosImage
-import functions.playSound as playSound
-import functions.utils as utils
+from functions.prosImage import *
+from functions.playSound import *
+from functions.convertData import *
 
-app = Flask(__name__)
-
-print("test")
+app = Flask(__name__,
+                    static_folder = "./src/dist/static",
+                                template_folder = "./src/dist")
 
 @app.route('/api/')
 def hello_world():
     return "Hello World!"
 
-@app.route('/')
-def only_hello():
-    return "Hello"
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+        return render_template("index.html")
 
 @app.route("/api/testpost", methods=['POST'])
 def double_num():
