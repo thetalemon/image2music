@@ -4,18 +4,34 @@
 from flask import Flask, render_template, jsonify, request
 from random import *
 import string
+# from .functions import prosImage
+# from .functions import playSound
+# from .functions import utils
+# from functions import prosImage
+# from functions import playSound
+# from functions import utils
+# import functions
+# import functions.prosImage as prosImage
+# import functions.playSound as playSound
+# import functions.convertData as convertData
 import functions.prosImage as prosImage
 import functions.playSound as playSound
 import functions.utils as utils
+
 app = Flask(__name__)
+
+print("test")
 
 @app.route('/api/')
 def hello_world():
     return "Hello World!"
 
+@app.route('/')
+def only_hello():
+    return "Hello"
 
 @app.route("/api/testpost", methods=['POST'])
-def hello():
+def double_num():
     response = {
         "result": int(request.json["val1"].split()[0])*2
     }
@@ -31,12 +47,12 @@ def random_number():
 @app.route('/api/cannyFile', methods=['POST'])
 def upload():
     base64_png = request.form['image']
-    img_array = utils.base64toCV2(base64_png)
+    img_array = functions.convertData.base64toCV2(base64_png)
 
-    processedImg = prosImage.cannyImage(img_array)
-    resultImage = utils.CV2toBase64(processedImg)
+    processedImg = functions.prosImage.cannyImage(img_array)
+    resultImage = functions.convertData.CV2toBase64(processedImg)
 
-    calcedRGB = prosImage.calcRGB(img_array)
+    calcedRGB = functions.prosImage.calcRGB(img_array)
 
     response = {
         'iamge': resultImage,
@@ -48,9 +64,9 @@ def upload():
 
 @app.route('/api/makeMusic', methods=['GET'])
 def makeMusic():
-    pm = playSound.makeSound()
+    pm = functions.playSound.makeSound()
 
-    music = utils.PMtoBase64(pm)
+    music = functions.convertData.PMtoBase64(pm)
 
     response = {
         'music' : music
@@ -58,4 +74,4 @@ def makeMusic():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run()
