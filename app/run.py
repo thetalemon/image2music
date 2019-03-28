@@ -14,8 +14,8 @@ from functions.playSound import *
 from functions.convertData import *
 
 app = Flask(__name__,
-                    static_folder = "./vue/src/dist/static",
-                                template_folder = "./vue/src/dist")
+                    static_folder = "./vue/dist/static",
+                                template_folder = "./vue/dist")
 
 @app.route('/api/')
 def hello_world():
