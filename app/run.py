@@ -9,23 +9,13 @@ from random import *
 import string
 import sys
 sys.path.insert(0, '/var/www')
-# from functions import prosImage as prosImage
-# from functions import playSound as playSound
-# from functions import convertData as convertData
-# from functions import prosImage
-# from functions import playSound
-# from functions import utils
-# import functions
-# import functions.prosImage as prosImage
-# import functions.playSound as playSound
-# import functions.convertData as convertData
 from functions.prosImage import *
 from functions.playSound import *
 from functions.convertData import *
 
 app = Flask(__name__,
-                    static_folder = "./src/dist/static",
-                                template_folder = "./src/dist")
+                    static_folder = "./vue/src/dist/static",
+                                template_folder = "./vue/src/dist")
 
 @app.route('/api/')
 def hello_world():

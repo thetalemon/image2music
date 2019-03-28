@@ -1,4 +1,4 @@
-FROM node:6.11.3-alpine AS build-stage
+FROM node:lts-alpine as build-stage
 
 RUN mkdir /var/www
 WORKDIR /var/www
@@ -8,6 +8,7 @@ WORKDIR /var/www/src/vue
 
 RUN npm install
 RUN npm install axios
+COPY . .
 RUN npm run build
 
 FROM python:3.6
