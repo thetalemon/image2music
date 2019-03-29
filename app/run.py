@@ -14,8 +14,8 @@ from functions.playSound import *
 from functions.convertData import *
 
 app = Flask(__name__,
-                    static_folder = "./vue/dist/static",
-                                template_folder = "./vue/dist")
+                    static_folder = "./dist/static",
+                                template_folder = "./dist")
 
 @app.route('/api/')
 def hello_world():
@@ -42,6 +42,7 @@ def random_number():
 
 @app.route('/api/cannyFile', methods=['POST'])
 def upload():
+    print("canny!")
     base64_png = request.form['image']
     img_array = functions.convertData.base64toCV2(base64_png)
 
@@ -60,6 +61,7 @@ def upload():
 
 @app.route('/api/makeMusic', methods=['GET'])
 def makeMusic():
+    print("makeMusic!")
     pm = functions.playSound.makeSound()
 
     music = functions.convertData.PMtoBase64(pm)
