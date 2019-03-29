@@ -18,6 +18,7 @@ WORKDIR /var/www/
 COPY requirements.txt /var/www
 RUN pip install --upgrade pip
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN apt-get update && apt-get install -y fluidsynth
 
 COPY run.py /var/www
 COPY uwsgi.ini /var/www

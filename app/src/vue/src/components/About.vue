@@ -33,9 +33,6 @@ export default {
           console.log(error)
         })
     }
-  },
-  created () {
-    this.getRandom()
   }
 }
 </script>

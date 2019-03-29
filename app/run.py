@@ -35,6 +35,7 @@ def double_num():
 
 @app.route('/api/random')
 def random_number():
+    print("randomNumber!")
     response = {
         'randomNumber': randint(1, 100)
     }
@@ -44,15 +45,15 @@ def random_number():
 def upload():
     print("canny!")
     base64_png = request.form['image']
-    img_array = functions.convertData.base64toCV2(base64_png)
+    img_array = base64toCV2(base64_png)
 
-    processedImg = functions.prosImage.cannyImage(img_array)
-    resultImage = functions.convertData.CV2toBase64(processedImg)
+    processedImg = cannyImage(img_array)
+    resultImage = CV2toBase64(processedImg)
 
-    calcedRGB = functions.prosImage.calcRGB(img_array)
+    calcedRGB = calcRGB(img_array)
 
     response = {
-        'iamge': resultImage,
+        'image': resultImage,
         'red'   : calcedRGB[0],
         'green' : calcedRGB[1],
         'blue'  : calcedRGB[2]
@@ -62,9 +63,9 @@ def upload():
 @app.route('/api/makeMusic', methods=['GET'])
 def makeMusic():
     print("makeMusic!")
-    pm = functions.playSound.makeSound()
+    pm = makeSound()
 
-    music = functions.convertData.PMtoBase64(pm)
+    music = PMtoBase64(pm)
 
     response = {
         'music' : music
