@@ -4,8 +4,8 @@ services:
   app:
     build: ./app
     image : app
-    volumes:
-      - ./app:/var/www/
+    # volumes:
+    #   - ./app:/var/www/
     ports:
       - "3031:3031"
     environment:
