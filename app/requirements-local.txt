@@ -1,7 +1,0 @@
-Flask         == 1.0.2
-numpy         == 1.16.2
-Pillow        == 5.4.1
-pretty-midi   == 0.2.8
-scipy         == 1.2.1
-uwsgi         == 2.0.18
-git+https://github.com/nwhitehead/pyfluidsynth

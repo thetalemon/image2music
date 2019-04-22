@@ -5,7 +5,9 @@ services:
     build: ./app
     image : app
     volumes:
-      - ./app:/var/www/
+      - ./app/functions:/var/www/functions
+      - ./app/src:/var/www/src
+      - ./app/run.py:/var/www/run.py
     ports:
       - "3031:3031"
     environment:
